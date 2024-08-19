@@ -44,3 +44,7 @@ TaskRite is a Full Stack + Web3 project that enables the creation and management
 - **Expanded Blockchain Integration**: Explore other blockchains for wider payment options.
 - **AI-Powered Labeling Suggestions**: Utilize AI to suggest labels and reduce manual work.
 
+
+## Images
+
+![Screenshot 2024-08-19 171144](https://github.com/user-attachments/assets/1853484d-23a1-46ab-857f-48bd1350800d)
