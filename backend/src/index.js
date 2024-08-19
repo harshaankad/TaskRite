@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var user_1 = require("./routers/user");
+var worker_1 = require("./routers/worker");
+var cors_1 = require("cors");
+var app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+app.use("/v1/user", user_1.default);
+app.use("/v1/worker", worker_1.default);
+app.listen(3000);

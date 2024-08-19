@@ -11,7 +11,7 @@ import { privateKey } from "../privateKey";
 import { decode } from "bs58";
 const connection = new Connection(process.env.RPC_URL ?? "");
 
-const TOTAL_SUBMISSIONS = 100;
+const TOTAL_SUBMISSIONS = 10;
 
 const prismaClient = new PrismaClient();
 
@@ -42,7 +42,7 @@ router.post("/payout", workerMiddleware, async (req, res) => {
 
     const transaction = new Transaction().add(
         SystemProgram.transfer({
-            fromPubkey: new PublicKey("2KeovpYvrgpziaDsq8nbNMP4mc48VNBVXb5arbqrg9Cq"),
+            fromPubkey: new PublicKey("8sjVZebKnWyek2yGWaGrUa5sDE1BfVh6i4QR7kMXTtuM"),
             toPubkey: new PublicKey(worker.address),
             lamports: 1000_000_000 * worker.pending_amount / TOTAL_DECIMALS,
         })

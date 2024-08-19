@@ -16,7 +16,11 @@ export const Upload = () => {
     const router = useRouter();
 
     async function onSubmit() {
-        const response = await axios.post(`${BACKEND_URL}/v1/user/task`, {
+        try{
+            console.log(images);
+            console.log(title);
+            console.log(txSignature);
+            const response = await axios.post(`${BACKEND_URL}/v1/user/task`, {
             options: images.map(image => ({
                 imageUrl: image,
             })),
@@ -27,8 +31,15 @@ export const Upload = () => {
                 "Authorization": localStorage.getItem("token")
             }
         })
+        console.log(response);
 
         router.push(`/task/${response.data.id}`)
+        }
+
+        catch (error) {
+        console.error("Error submitting task:", error);
+        // Optionally show an error message to the user
+    }
     }
 
     async function makePayment() {
@@ -50,7 +61,7 @@ export const Upload = () => {
 
         await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
         setTxSignature(signature);
-    }
+        }
 
     return <div className="flex justify-center">
         <div className="max-w-screen-lg w-full">
@@ -66,9 +77,17 @@ export const Upload = () => {
 
             <label className="pl-4 block mt-8 text-md font-medium text-gray-900 text-black">Add Images</label>
             <div className="flex justify-center pt-4 max-w-screen-lg">
-                {images.map(image => <UploadImage image={image} onImageAdded={(imageUrl) => {
-                    setImages(i => [...i, imageUrl]);
-                }} />)}
+                {images.map((image, index) => (
+                    <UploadImage
+                         key={index}
+                        image={image}
+                        onImageAdded={(imageUrl) => {
+                         setImages(i => [...i, imageUrl]);
+                     }}
+                     
+    />
+  ))}
+            
             </div>
 
         <div className="ml-4 pt-2 flex justify-center">

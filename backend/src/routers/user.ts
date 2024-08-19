@@ -11,7 +11,7 @@ import { Connection, PublicKey, Transaction } from "@solana/web3.js";
 
 const connection = new Connection(process.env.RPC_URL ?? "");
 
-const PARENT_WALLET_ADDRESS = "2KeovpYvrgpziaDsq8nbNMP4mc48VNBVXb5arbqrg9Cq";
+const PARENT_WALLET_ADDRESS = "8sjVZebKnWyek2yGWaGrUa5sDE1BfVh6i4QR7kMXTtuM";
     
 const DEFAULT_TITLE = "Select the most clickable thumbnail";
 
@@ -20,7 +20,7 @@ const s3Client = new S3Client({
         accessKeyId: process.env.ACCESS_KEY_ID ?? "",
         secretAccessKey: process.env.ACCESS_SECRET ?? "",
     },
-    region: "us-east-1"
+    region: "eu-north-1"
 })
 
 const router = Router();
@@ -60,7 +60,6 @@ router.get("/task", authMiddleware, async (req, res) => {
         })
     }
 
-    // Todo: Can u make this faster?
     const responses = await prismaClient.submission.findMany({
         where: {
             task_id: Number(taskId)
@@ -123,23 +122,23 @@ router.post("/task", authMiddleware, async (req, res) => {
 
     console.log(transaction);
 
-    if ((transaction?.meta?.postBalances[1] ?? 0) - (transaction?.meta?.preBalances[1] ?? 0) !== 100000000) {
-        return res.status(411).json({
-            message: "Transaction signature/amount incorrect"
-        })
-    }
+    // if ((transaction?.meta?.postBalances[1] ?? 0) - (transaction?.meta?.preBalances[1] ?? 0) !== 100000000) {
+    //     return res.status(411).json({
+    //         message: "Transaction signature/amount incorrect"
+    //     })
+    // }
 
-    if (transaction?.transaction.message.getAccountKeys().get(1)?.toString() !== PARENT_WALLET_ADDRESS) {
-        return res.status(411).json({
-            message: "Transaction sent to wrong address"
-        })
-    }
+    // if (transaction?.transaction.message.getAccountKeys().get(1)?.toString() !== PARENT_WALLET_ADDRESS) {
+    //     return res.status(411).json({
+    //         message: "Transaction sent to wrong address"
+    //     })
+    // }
 
-    if (transaction?.transaction.message.getAccountKeys().get(0)?.toString() !== user?.address) {
-        return res.status(411).json({
-            message: "Transaction sent to wrong address"
-        })
-    }
+    // if (transaction?.transaction.message.getAccountKeys().get(0)?.toString() !== user?.address) {
+    //     return res.status(411).json({
+    //         message: "Transaction sent to wrong address"
+    //     })
+    // }
     // was this money paid by this user address or a different address?
 
     // parse the signature here to ensure the person has paid 0.1 SOL
@@ -179,7 +178,7 @@ router.get("/presignedUrl", authMiddleware, async (req, res) => {
     const userId = req.userId;
 
     const { url, fields } = await createPresignedPost(s3Client, {
-        Bucket: 'hkirat-cms',
+        Bucket: 'harsha-decentralized-fiver',
         Key: `fiver/${userId}/${Math.random()}/image.jpg`,
         Conditions: [
           ['content-length-range', 0, 5 * 1024 * 1024] // 5 MB max
