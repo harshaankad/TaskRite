@@ -48,3 +48,10 @@ TaskRite is a Full Stack + Web3 project that enables the creation and management
 ## Images
 
 ![Screenshot 2024-08-19 171144](https://github.com/user-attachments/assets/1853484d-23a1-46ab-857f-48bd1350800d)
+![Screenshot 2024-08-19 171224](https://github.com/user-attachments/assets/c33be087-1ae1-4b5a-9d43-e74c9a63b1be)
+![Screenshot 2024-08-19 171336](https://github.com/user-attachments/assets/b11c8957-bec5-4e45-ab1b-be1c18466026)
+![Screenshot 2024-08-19 171412](https://github.com/user-attachments/assets/d2459561-8d61-45f5-9582-22e1df48f4e1)
+![Screenshot 2024-08-19 171631](https://github.com/user-attachments/assets/0ecba7eb-d7c5-4ed4-99b2-929529b1813b)
+![Screenshot 2024-08-19 171706](https://github.com/user-attachments/assets/f6b5b657-03d1-412f-bfb3-1796d2e7ef5c)
+![Screenshot_20221220_181554](https://github.com/user-attachments/assets/91e0b571-7d4f-497d-9252-d9844199edf6)
+
